@@ -1,5 +1,7 @@
 # Sort Layers List
-Helps to organize your layers list. Sorts list by layer canvas position.
+Organize your layers list. Plugin sorts list by layer position on canvas.
+
+Top layers goes first. But all visual relations are saved. Background layer are still at the bottom despite of its coordinates.
 
 ### How to use
 1. Select layers
