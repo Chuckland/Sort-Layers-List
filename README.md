@@ -1,5 +1,5 @@
 # Sort Layers List
-Sort layers in list by canvas position.
+Helps to organize your layers list. Sorts list by layer canvas position.
 
 ### How to use
 1. Select layers
