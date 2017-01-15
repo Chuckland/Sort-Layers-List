@@ -1,0 +1,63 @@
+@import 'shared.js'
+
+var com = com || {};
+
+com.adordzheev = com.adordzheev || {};
+
+com.adordzheev.alert = function(message, title) {
+    title = title || 'Alert';
+    var app = [NSApplication sharedApplication];
+    [app displayDialog: message withTitle: title];
+}
+
+com.adordzheev.init = function(context) {
+    com.adordzheev.context = context;
+    com.adordzheev.doc = context.document;
+};
+
+com.adordzheev.sendForward = function() {
+    [NSApp sendAction: 'moveForward:'
+        to: nil from: com.adordzheev.doc
+    ];
+};
+
+com.adordzheev.sortIndices = function(array) {
+    for (var i = 0; i < array.length - 1; i++) {
+        // get two array
+        var a = array[i],
+            b = array[i + 1];
+
+        // check if both layers are in the same group
+        var parent = a.parentGroup(),
+            parent_b = b.parentGroup();
+
+        if (parent !== parent_b) {
+            throw new Error("Couldn’t sort indices");
+        }
+
+        if (parent.indexOfLayer(a) > parent.indexOfLayer(b)) {
+            // swap index
+            com.adordzheev.swapIndex(b, a);
+        }
+    }
+};
+
+com.adordzheev.swapIndex = function(a, b) {
+    // check if both layers are in the same group
+    var parent = a.parentGroup(),
+        parent_b = b.parentGroup(),
+        steps;
+
+    if (parent !== parent_b) {
+        throw new Error("Select layers from the same group");
+    }
+
+    com.adordzheev.doc.currentPage().deselectAllLayers();
+    a.setIsSelected(true);
+
+    steps = Math.abs(parent.indexOfLayer(b) - parent.indexOfLayer(a));
+
+    for (var i = 0; i < steps; i++) {
+        com.adordzheev.sendForward();
+    }
+};

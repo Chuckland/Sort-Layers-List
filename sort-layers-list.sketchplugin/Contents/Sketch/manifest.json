@@ -1,0 +1,21 @@
+{
+    "name" : "Sort Layers List",
+    "author" : "Anton Dordzheev",
+    "version": "0.1",
+    "identifier": "com.adordzheev.sort-layers-list",
+    "commands" : [
+        {
+            "script" : "Sort Layers List.js",
+            "handler" : "onRun",
+            "name" : "Sort Layers List",
+            "identifier" : "sort_layers_list"
+        }
+    ],
+    "menu" : {
+        "title" : "Sort Layers List",
+        "isRoot" : true,
+        "items" : [
+            "sort_layers_list"
+        ]
+    }
+}
