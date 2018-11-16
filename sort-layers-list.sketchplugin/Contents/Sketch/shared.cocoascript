@@ -52,8 +52,13 @@ com.adordzheev.swapIndex = function(a, b) {
         throw new Error("Select layers from the same group");
     }
 
-    com.adordzheev.doc.currentPage().deselectAllLayers();
-    a.setIsSelected(true);
+    var page = com.adordzheev.doc.currentPage()
+    if (page.deselectAllLayers) {
+        page.deselectAllLayers();
+        a.setIsSelected(true);
+    } else {
+        page.changeSelectionBySelectingLayers_([a]);
+    }
 
     steps = Math.abs(parent.indexOfLayer(b) - parent.indexOfLayer(a));
 
